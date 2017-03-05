@@ -13,7 +13,7 @@ def main():
     #get user inputs
     patchWorkSize, colours = userInputs()
     
-    #draws patchwork and patches
+    #draws patchwork and patches patches
     drawPatchwork(patchWorkSize, colours)
     
 
@@ -89,8 +89,6 @@ def drawPatchwork(patchWorkSize, colours):
             backgroundBorder.draw(win)
             
             #checks j + k is within the diagonal pattern
-            #j and k act as vertical and horizontal coordinates (row and column)
-            #e.g. if j = 0 and k = 4 then it will draw in bottom left square
             if j + k == diagonalPattern:
                 
                 #if they are then draw patch one with the selected colour
@@ -132,7 +130,7 @@ def drawPatchOne(win, x, y, patchWorkSize, colour):
         #decreases the radius each iteration
         radius = radius - 5
         
-        #moves the circle centre upwards each iteration
+        #increases the vertical size of each circle, each iteration
         y = y + 5
         
         centre = Point(x, y)
