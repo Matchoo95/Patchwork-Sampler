@@ -13,7 +13,7 @@ def main():
     #get user inputs
     patchWorkSize, colours = userInputs()
     
-    #draws patchwork and patches patches
+    #draws patchwork and patches
     drawPatchwork(patchWorkSize, colours)
     
 
@@ -44,6 +44,10 @@ def userInputs():
                             "'colours', you can't have the same colour " \
                             "more than once: ")
         
+        #checks if the colour is available or if it was already chosen
+        while getColours not in availableColours or getColours in colours:
+            getColours = input("Please enter a valid colour: ")
+        
         #displays a list of colours if the user inputs "colours"
         if getColours == "colours":
             print(availableColours)
@@ -54,8 +58,7 @@ def userInputs():
             
         #if the user inputs anything else, then this asks for the colour again
         else:
-            while getColours not in availableColours:
-                getColours = input("Please enter a valid colour: ")
+            getColours = input("Please enter a valid colour: ")
                 
     
     return int(patchWorkSize), colours
@@ -86,6 +89,8 @@ def drawPatchwork(patchWorkSize, colours):
             backgroundBorder.draw(win)
             
             #checks j + k is within the diagonal pattern
+            #j and k act as vertical and horizontal coordinates (row and column)
+            #e.g. if j = 0 and k = 4 then it will draw in bottom left square
             if j + k == diagonalPattern:
                 
                 #if they are then draw patch one with the selected colour
@@ -127,7 +132,7 @@ def drawPatchOne(win, x, y, patchWorkSize, colour):
         #decreases the radius each iteration
         radius = radius - 5
         
-        #increases the vertical size of each circle, each iteration
+        #moves the circle centre upwards each iteration
         y = y + 5
         
         centre = Point(x, y)
